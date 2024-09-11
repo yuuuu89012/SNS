@@ -14,5 +14,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix'=> 'post'],function(){
 Route::get('/create',[PostController::class,'create'])->name('post.create');
-});
+Route::get('/index',[PostController::class,'index'])->name('post.index');
 Route::post('/store',[PostController::class,'store'])->name('post.store');
+});
+
+

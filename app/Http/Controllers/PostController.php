@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    public function index(){
+        $post=Post::all();
+        return  view('post.index',['post'=>$post]);
+    }
     public function create(){
         return view('posts.create');
     }
@@ -16,11 +20,11 @@ class PostController extends Controller
         $post = new Post();
 
         if ($file = $request->image) {
-            $fileMame=time() . $file->getClientOriginalName();
+            $fileName=time() . $file->getClientOriginalName();
             $target_path=public_path('uploads/');
-            $file->move($target_path,$fileMame);
+            $file->move($target_path,$fileName);
         }else{
-            $fileMame=null;
+            $fileName=null;
         }
 
         $post->title=$request->input('title');
@@ -30,6 +34,6 @@ class PostController extends Controller
 
         $post->save();
 
-        return view('post.index');
+        return view('posts.index');
     }
 }
