@@ -7,12 +7,17 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all(); 
+        $posts=DB::table('users')
+          ->join('posts', 'users.id', '=', 'posts.user_id')
+          ->select('posts.title','posts.image','posts.description','posts.user_id','posts.id','users.name')
+          ->get();
+        #$posts = Post::all(); 
         return view('posts.index', ['posts' => $posts]); 
     }
 
@@ -62,5 +67,12 @@ class PostController extends Controller
 
         return redirect('post/index');
     }
+
+    public function destroy($id){
+        $post=Post::find($id);
+        $post->delete();
+        return  redirect('post/index');
+    }
+
 }
  

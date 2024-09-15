@@ -18,6 +18,7 @@ Route::get('/index',[PostController::class,'index'])->name('post.index');
 Route::post('/store',[PostController::class,'store'])->name('post.store');
 Route::get('/edit/{id}',[PostController::class,'edit'])->name('post.edit');
 Route::post('/update/{id}',[PostController::class,'update'])->name('post.update');
+Route::post('/destroy/{id}',[PostController::class,'destroy'])->name('post.destroy');
 });
 
 
