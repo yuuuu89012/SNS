@@ -3,7 +3,9 @@
 @foreach($posts as $p)
   <p>{{$p->name}}</p>
   <p>{{ $p->title }}</p>
-  <p><img src="{{ asset('uploads/' . $p->image) }}" alt="" style="width:200"></p>
+  <a href="{{route('post.show',['id'=>$p->id])}}">
+    <p><img src="{{ asset('uploads/' . $p->image) }}" alt="" style="width:200"></p>
+  </a>
   <p>{{ $p->description }}</p>
   @if($p->user_id == Auth::id())
     <a href="{{route('post.edit',['id'=>$p->id])}}">編集</a>
