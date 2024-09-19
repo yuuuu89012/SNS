@@ -49,4 +49,49 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
+
+    public function favorites(){
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')->withTimestamps();
+    }
+    public function favorite($postId){
+        $exist=$this->is_favorite($postId);
+        if($exist){
+            return false;
+        }
+        else{
+            $this->favorites()->attach($postId);
+            return true;
+        }
+    }
+
+    public function unfavorite($postId){
+        $exist=$this->is_favorite($postId);
+        if($exist){
+            $this->favorites()->detach($postId);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public  function is_favorite($postId){
+        return $this->favorites()->where('post_id',$postId)->exists();
+    }
+
+    public function followers(){
+        return  $this->belongsToMany(User::class, 'followers','followed_id','following_id');
+    }
+    public function follows(){
+        return  $this->belongsToMany(User::class, 'followers','following_id','followed_id');
+    }
+    public function follow($userId){
+        return  $this->follows()->attach($userId);
+    }
+    public function unfollow($userId){
+        return  $this->follows()->detach($userId);
+    }
+    public function is_following($userId){
+        return (boolean) $this->follows()->where('following_id',$userId)->first(['id']);
+    }
 }
+
