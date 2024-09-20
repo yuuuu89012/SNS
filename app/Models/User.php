@@ -90,8 +90,11 @@ class User extends Authenticatable
     public function unfollow($userId){
         return  $this->follows()->detach($userId);
     }
-    public function is_following($userId){
-        return (boolean) $this->follows()->where('following_id',$userId)->first(['id']);
+    public function isFollowing($userId){
+        return (boolean) $this->follows()->where('followed_id',$userId)->first(['id']);
+    }
+    public function isFollowed($userId){
+        return (boolean) $this->followers()->where('following_id',$userId)->first(['id']);
     }
 }
 

@@ -32,3 +32,5 @@ Route::post('/posts/{post}/comments',[CommentController::class,'store'])->name('
 Route::delete('/comments/{comment}/destroy',[CommentController::class,'destroy'])->name('comments.destroy');
 Route::post('user/{user}/follow',[UserController::class,'follow'])->name('follow');
 Route::delete('user/{user}/unfollow',[UserController::class,'unfollow'])->name('unfollow');
+Route::get('user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
+Route::post('user/update/{id}',[UserController::class,'update'])->name('user.update');
