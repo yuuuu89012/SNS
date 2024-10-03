@@ -16,9 +16,10 @@ class PostController extends Controller
     {
         $posts=DB::table('users')
           ->join('posts', 'users.id', '=', 'posts.user_id')
-          ->select('posts.title','posts.image','posts.description','posts.user_id','posts.id','users.name','users.id as user_id')
+          ->select('posts.title','posts.image','posts.description','posts.user_id','posts.id','users.name','users.id as user_id','posts.category')
           ->get();
         #$posts = Post::all(); 
+
         return view('posts.index', ['posts' => $posts]); 
     }
 
@@ -40,11 +41,12 @@ class PostController extends Controller
         $post->title=$request->input('title');
         $post->image=$fileName;
         $post->description=$request->input('description');
+        $post->category = $request->input('category');
         $post->user_id=Auth::id();
 
         $post->save();
 
-        #return view('post.index');
+        return redirect()->route('post.index');
     }
     public function edit($id){
         $post=Post::find($id);
@@ -57,13 +59,15 @@ class PostController extends Controller
             $fileName=time().$file->getClientOriginalName();
             $target_path=public_path('uploads/');
             $file->move($target_path,$fileName);
+            $post->image = $fileName;
         }
         else{
             $fileName=null;
         }
         $post->title=$request->input('title');
         $post->image=$fileName;
-        $post->description=$request->imput('description');
+        $post->description=$request->input('description');
+        $post->category = $request->input('category');
         $post->save();
 
         return redirect('post/index');

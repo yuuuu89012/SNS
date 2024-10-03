@@ -21,5 +21,16 @@
     @error('description')
     <div>{{$message}}</div>
     @enderror
+    <select name="category" required>
+      <option value="">カテゴリーを選択</option>
+      <option value="レシピ">レシピ</option>
+      <option value="ヘア">ヘア</option>
+      <option value="トラベル">トラベル</option>
+      <option value="グルメ">グルメ</option>
+      <option value="暮らし">暮らし</option>
+     <option value="ファッション">ファッション</option>
+     <option value="美容">美容</option>
+     <option value="その他">その他</option>
+    </select>
     <button type="submit">投稿する</button>
 </form>

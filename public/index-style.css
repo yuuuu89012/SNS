@@ -1,0 +1,432 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F9F9F8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D6DDD0;
+    padding: 10px 20px;
+}
+a {
+    text-decoration: none;
+}
+  
+
+.logo img{
+    height: 150px;
+    width:150px;
+}
+
+.search-bar input {
+    padding: 5px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #746F57;
+    color:#ffffff;
+    border: none;
+    outline: none;
+    padding-left:30px;
+}
+
+.search-bar {
+    display: inline-block; /* なくても大丈夫だけど、念の為 */
+    position: relative;    /* 基準値とする */
+    padding-left: 20px;
+
+  }
+  .search-bar::before {
+    content: "";           /* 疑似要素に必須 */
+    width: 16px;           /* アイコンの横幅 */
+    height: 16px;          /* アイコンの高さ */
+    background: url(./search.png) no-repeat center center / auto 100%; /* 背景にアイコン画像を配置 */
+    display: inline-block; /* 高さを持たせるためにインラインブロック要素にする */
+    position: absolute;    /* 相対位置に指定 */
+    top: 12px;              /* アイコンの位置。微調整してね */
+    left: 28px;             /* アイコンの位置。微調整してね */
+  }
+
+
+.logo-ser{
+    display: flex;
+    align-items: center;
+}
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.user-menu img {
+    height: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.menu-icon div {
+    width: 100%;
+    height: 4px;
+    background-color: #000;
+    border-radius: 2px;
+}
+
+nav {
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center; /* Center align the items */
+    list-style-type: none;
+    padding: 0 20px;
+    margin: 0;
+}
+
+nav li {
+    font-size: 16px;
+    margin: 0 20px; /* Reduce the space between items */
+    cursor: pointer;
+}
+nav li.inactive {
+    color: #ccc; /* 非アクティブな項目の色 */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.posts {
+    width: 65%;
+}
+
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.follow-btn {
+    background-color: #746F57;
+    border: none;
+    padding: 10px 40px;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+
+.post-img img {
+    width: 600px; /* 親要素の幅に合わせる */
+    height: 400px; /* 高さを自動調整 */
+    object-fit: cover; /* 画像が枠にフィットするように切り取る */
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-actions span {
+    margin-right: 10px;
+}
+
+.post-text {
+    flex: 1;
+}
+
+.add-post-btn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #746F57;
+    border: none;
+    padding: 0; /* パディングをゼロに */
+    color: #ffffff;
+    font-size: 30px;
+    border-radius: 50%; /* 完全な円にする */
+    cursor: pointer;
+    text-align: center;
+    display: flex; /* 中央揃えのためにフレックスボックスを使用 */
+    align-items: center;
+    justify-content: center;
+}
+
+
+.post-img{
+    width: 100%; /* 親要素の幅に合わせる */
+    height: auto; /* 高さは自動調整 */
+    max-width: 200px; /* 最大幅を設定 */
+    object-fit: cover; /* 画像が枠にフィットするように切り取る */
+    
+}
+nav li.inactive {
+    color: #ccc; /* 非アクティブな項目の色 */
+}
+
+.hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 150;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.hamburger.is-active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.is-active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.hamburger span {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2px;
+    background-color: #333333;
+    transition: transform .3s;
+}
+
+.hamburger.is-active span {
+    background-color: #ffffff;
+}
+
+.hamburger span:nth-child(1) {
+    top: 30%;
+}
+
+.hamburger span:nth-child(2) {
+    top: 60%;
+}
+
+.hamburger span:nth-child(3) {
+    top: 90%;
+}
+
+/*=========================================
+#drawer
+=========================================*/
+.drawer {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 130;
+    width: 100%;
+    height: 100vh;
+    background-color: #333333;
+    transition: opacity .3s, visibility .3s;
+}
+
+.drawer.is-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.drawer-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.drawer__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+}
+
+.drawer__link {
+    color: #ffffff;
+}
+
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+    vertical-align: middle;
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    text-align: inherit;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  /**************** 以下、ハンバーガーボタンのスタイリング ****************/
+  .humbtn {
+    /* ボタンの配置位置  */
+    top: 100px;
+    left: 100px;
+    /* ボタンの大きさ  */
+    width: 58px;
+    height: 48px;
+    /* バーガーの線をボタン範囲の中心に配置 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 最前面に */
+    z-index: 10;
+  }
+  
+  /***** 真ん中のバーガー線 *****/
+  .btn-line {
+    /* 線の長さと高さ */
+    width: 100%;
+    height: 4px;
+    /* バーガー線の色 */
+    background-color: #333;
+    /* バーガー線の位置基準として設定 */
+    position: relative;
+    transition: .2s;
+  }
+  
+  /***** 上下のバーガー線 *****/
+  .btn-line::before,
+  .btn-line::after {
+    content: "";
+    /* 基準線と同じ大きさと色 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    transition: .2s;
+  }
+  
+  
+  .btn-line::before {
+    /* 上の線の位置 */
+    transform: translateY(-16px);
+  }
+  
+  
+  .btn-line::after {
+    /* 下の線の位置 */
+    transform: translateY(16px);
+  }
+  
+  /***** メニューオープン時 *****/
+  .btn.open {
+    transform: rotate(180deg);
+  }
+  .btn-line.open {
+    /* 真ん中の線を透明に */
+    background-color: transparent;
+  }
+  
+  .btn-line.open::before,
+  .btn-line.open::after {
+    content: "";
+    /* 上下の線の色を変える */
+    background-color: #333;
+    transition: .2s;
+  }
+  
+  .btn-line.open::before {
+    /* 上の線を傾ける */
+    transform: rotate(135deg);
+  }
+  
+  .btn-line.open::after {
+    /* 上の線を傾ける */
+    transform: rotate(-135deg);
+  }
+  
+  /**************** ここまで、ハンバーガーボタンのスタイリング ****************/
+  
+  /**************** 以下、メニューのスタイリング ****************/
+  .menu {
+    position: fixed;
+    /* メニューの位置マイナス指定で画面外に */
+    transform : translateX(130%);
+    width: 70%;
+    height: 100vh;
+    /* メニューを縦に */
+    display: flex;
+    flex-direction: column;
+    color: #efefef;
+    background-color: rgba(167, 148, 58, 0.7);
+    transition: .3s;
+  }
+  
+  .menu-list {
+    width: 100%;
+    height: 100%;
+    /* メニューテキスト位置をリスト内中心に */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .menu-list:hover {
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: .3s;
+    cursor: pointer;
+  }
+  
+  /***** メニューオープン時位置0にして画面内に *****/
+  .menu.open {
+    transform: translateX(30%);
+  }
+  
+  /* 600px以上はハンバーガーボタン非表示、ヘッダー固定 */
+  @media screen and (min-width: 600px) {
+    .btn {
+      display: none;
+    }
+  
+    .menu {
+      position: fixed;
+      transform : translateX(0);
+      width: 100%;
+      height: 100px;
+      /* メニューを横に */
+      display: flex;
+      flex-direction: row;
+    }
+  }

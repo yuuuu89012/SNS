@@ -12,12 +12,12 @@
         <div class="col-md-8">
             <div class="logo">
                 <img src="{{ asset('logo.png') }}" width="150" height="150" alt="Logo">
-            </div><!--ロゴの挿入-->
+            </div>
             <div class="card">
                 <div class="card-header">{{ __('新規登録') }}</div>
 
                 <div class="card-body">
-                    <form class="form" method="POST" action="{{ route('register') }}">
+                    <form class="form" method="POST" id="login-form" action="{{ route('register') }}">
                         <div class="flex">
                             @csrf
 

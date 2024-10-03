@@ -37,7 +37,12 @@ class StorePostRequest extends FormRequest
             'required',
             'max:100',
         ],
+        'category' => [ 
+            'string',
+            'required',
+                
         
-        ];
+        ],
+    ];
     }
 }
