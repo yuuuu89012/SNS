@@ -34,9 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+var scrollPosition; 
+var STORAGE_KEY = "scrollY";
 
-$(function () {
-    $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
-      $('.menu , .btn , .btn-line').toggleClass('open'); // メニューとバーガーの線にopenクラスをつけ外しする
-    })
+
+function saveScrollPosition(){
+    scrollPosition = window.pageYOffset; 
+    localStorage.setItem(STORAGE_KEY, scrollPosition);
+}
+
+window.addEventListener("load", function(){
+    scrollPosition = localStorage.getItem(STORAGE_KEY);
+    if(scrollPosition !== null){
+        scrollTo(0, scrollPosition);
+    }
+    window.addEventListener("scroll", saveScrollPosition, false);
 });
+document.addEventListener('DOMContentLoaded', function() {
+    var likeButtons = document.getElementsByClassName('btn');
+    Array.from(likeButtons).forEach(function(likeButton) {
+    likeButton.addEventListener('click', function() {
+    likeButton.classList.toggle('liked');
+    });
+    });
+    }, false);
+   
